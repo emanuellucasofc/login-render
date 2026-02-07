@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Entrar</title>
+  <style>
+    :root{
+      --bg:#000;
+      --red:#e50914;
+      --text:#fff;
+      --muted:#b3b3b3;
+      --card: rgba(0,0,0,.75);
+      --input:#333;
+      --border:#8c8c8c;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family: Arial, Helvetica, sans-serif; color:var(--text);
+      min-height:100vh; background:var(--bg);
+      display:flex; flex-direction:column;
+    }
+    /* Fundo com “imagem” (sem depender de arquivo) */
+    .bg{
+      position:fixed; inset:0;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(229,9,20,.25), transparent 35%),
+        radial-gradient(circle at 80% 30%, rgba(255,255,255,.06), transparent 40%),
+        linear-gradient(180deg, rgba(0,0,0,.75), rgba(0,0,0,.95));
+      z-index:-2;
+    }
+    .shade{
+      position:fixed; inset:0;
+      background: linear-gradient(to top, rgba(0,0,0,.9), rgba(0,0,0,.6), rgba(0,0,0,.9));
+      z-index:-1;
+    }
+
+    header{
+      padding:22px 36px;
+      font-weight:800;
+      letter-spacing:.5px;
+      color:var(--red);
+      font-size:28px;
+    }
+
+    .wrap{
+      flex:1;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+
+    .card{
+      width:min(450px, 94vw);
+      background: var(--card);
+      border-radius: 6px;
+      padding: 60px 68px 40px;
+    }
+    h1{
+      margin:0 0 24px;
+      font-size:32px;
+      font-weight:700;
+    }
+
+    label{
+      display:block;
+      font-size:13px;
+      color:var(--muted);
+      margin:0 0 6px;
+    }
+
+    .field{
+      margin-bottom:16px;
+    }
+
+    input{
+      width:100%;
+      height:50px;
+      padding: 10px 14px;
+      border-radius:4px;
+      border: 1px solid transparent;
+      background: var(--input);
+      color: var(--text);
+      outline:none;
+      font-size:16px;
+    }
+    input:focus{
+      border-color: var(--border);
+    }
+
+    .btn{
+      width:100%;
+      height:48px;
+      border:0;
+      border-radius:4px;
+      background: var(--red);
+      color:#fff;
+      font-weight:700;
+      font-size:16px;
+      cursor:pointer;
+      margin-top:10px;
+    }
+    .btn:hover{filter:brightness(1.05)}
+
+    .row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-top:12px;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .row a{ color:var(--muted); text-decoration:none; }
+    .row a:hover{ text-decoration:underline; }
+
+    .checkbox{
+      display:flex; align-items:center; gap:8px;
+    }
+    .checkbox input{ width:16px; height:16px; margin:0; }
+
+    .help{
+      margin-top:18px;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .help a{ color:#fff; text-decoration:none; }
+    .help a:hover{ text-decoration:underline; }
+
+    .error{
+      margin: 0 0 16px;
+      padding: 12px 12px;
+      border-radius: 4px;
+      background: rgba(229,9,20,.14);
+      border: 1px solid rgba(229,9,20,.35);
+      color:#ffd6d8;
+      font-size:14px;
+    }
+
+    footer{
+      padding: 24px;
+      color: rgba(255,255,255,.45);
+      font-size:12px;
+      text-align:center;
+    }
+
+    @media (max-width: 520px){
+      header{padding:18px 18px; font-size:24px;}
+      .card{padding:36px 22px 28px;}
+      h1{font-size:28px;}
+    }
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="shade"></div>
+
+  <header>NETFLIX</header>
+
+  <main class="wrap">
+    <section class="card">
+      <h1>Entrar</h1>
+
+      <% if (error) { %>
+        <div class="error"><%= error %></div>
+      <% } %>
+
+      <form method="POST" action="/login">
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required placeholder="Email ou número de telefone" />
+        </div>
+
+        <div class="field">
+          <label for="password">Senha</label>
+          <input id="password" name="password" type="password" required placeholder="Senha" />
+        </div>
+
+        <button class="btn" type="submit">Entrar</button>
+
+        <div class="row">
+          <label class="checkbox">
+            <input type="checkbox" name="remember" />
+            <span>Lembre-se de mim</span>
+          </label>
+          <a href="#" onclick="return false;">Precisa de ajuda?</a>
+        </div>
+
+        <div class="help">
+          Novo por aqui? <a href="#" onclick="return false;">Assine agora</a>.
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    Projeto educacional — tela inspirada no estilo Netflix (sem uso de imagens/marca oficial).
+  </footer>
+</body>
+</html>
